@@ -1,88 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="campus360">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Details Form</title>
+
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="js/app.js"></script>
+
+    <title>Campus360</title>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #e0f7fa, #f5f5f5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
+
+        body{
+            font-family:Arial;
+            background:#f5f5f5;
         }
 
-        .form-box {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            width: 100%;
-            max-width: 420px;
+        .form-box{
+            width:450px;
+            margin:auto;
+            margin-top:40px;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 0 10px gray;
         }
 
-        h2 {
-            text-align: center;
-            color: #333;
+        input{
+            width:100%;
+            padding:8px;
+            margin-top:5px;
+            margin-bottom:10px;
         }
 
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-            color: #444;
+        button{
+            width:100%;
+            padding:10px;
+            background:green;
+            color:white;
+            border:none;
+            cursor:pointer;
         }
 
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 6px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
+        h2,h3{
+            text-align:center;
         }
 
-        button {
-            margin-top: 15px;
-            width: 100%;
-            padding: 10px;
-            background: #28a745;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background: #218838;
-        }
     </style>
+
 </head>
-<body>
-    <div class="form-box">
-        <h2>Student Details Form</h2>
-        <form>
-            <label for="name">Student Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter student name" required>
 
-            <label for="age">Age</label>
-            <input type="number" id="age" name="age" placeholder="Enter age" required>
+<body ng-controller="dashboardcontroller">
 
-            <label for="class">Class</label>
-            <input type="text" id="class" name="class" placeholder="Enter class" required>
+<div class="form-box">
 
-            <label for="grade">Grade</label>
-            <input type="text" id="grade" name="grade" placeholder="Enter grade" required>
+    <h2>{{collegename}}</h2>
 
-            <label for="address">Address</label>
-            <textarea id="address" name="address" rows="3" placeholder="Enter address" required></textarea>
+    <h3>Total Students : {{totalstudents}}</h3>
 
-            <button type="submit">Submit</button>
-        </form>
-    </div>
+    <label>Student Name</label>
+    <input type="text" ng-model="studname">
+
+    <p><b>Name :</b> {{studname}}</p>
+
+    <label>Age</label>
+    <input type="number" ng-model="stdage">
+
+    <p><b>Age :</b> {{stdage}}</p>
+
+    <label>Class</label>
+    <input type="text" ng-model="stdclass">
+
+    <p><b>Class :</b> {{stdclass}}</p>
+
+    <button type="button" ng-click="addstudent()">
+        Submit
+    </button>
+
+    <hr>
+
+    <h3>Student List</h3>
+
+    <ul>
+        <li ng-repeat="student in students track by $index">
+            {{$index+1}}. {{student}}
+        </li>
+    </ul>
+
+</div>
+
 </body>
 </html>
