@@ -18,6 +18,9 @@ app.controller("dashboardcontroller", function ($scope) {
 
     $scope.totalstudents = 0;
 
+    // Initially hide the data
+  $scope.showData = false;
+
     $scope.addstudent = function () {
 
         $scope.totalstudents++;
@@ -26,6 +29,8 @@ app.controller("dashboardcontroller", function ($scope) {
             $scope.students.push($scope.studname);
         }
 
+        // Toggle show/hide
+        $scope.showData = !$scope.showData;
     };
 
 });
