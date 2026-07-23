@@ -33,6 +33,21 @@ app.controller("dashboardcontroller",function($scope){
          ];
 
 $scope.selectedDepartment="MBA";
+$scope.isDisabled=true;
+$scope.allowAdmission=function(){
+
+$scope.isDisabled=false;
+
+};
+$scope.isReadOnly=true;
+$scope.taggleReadOnly=function(){
+
+
+$scope.isReadOnly=!$scope.isReadOnly;
+
+};
+$scope.student={};
+
 
     $scope.addstudent=function(){
 

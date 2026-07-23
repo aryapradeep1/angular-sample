@@ -3,59 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus360</title>
-
-    <link rel="stylesheet" href="css/style.css">
-
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="js/app.js"></script>
+    <title>College Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body ng-controller="dashboardcontroller">
-
     <input type="text" ng-model="collegename">
-    <h1>{{collegename}}</h1>
-
+<h1 style="color: #1E3A8A;">{{collegename}}</h1>
     <input type="text" ng-model="Name">
-    <p>Name: {{Name}}</p>
-
-    <input type="text" ng-model="Email">
-    <p>Email: {{Email}}</p>
-
-    <input type="text" ng-model="Regno">
-    <p>Regno: {{Regno}}</p>
-
-    <input type="text" ng-model="college">
-    <p>College: {{college}}</p>
-
-    <input type="text" ng-model="sysno">
-    <p ng-class="{
-      'green':sysno>1,'red':sysno<1
-
-    }"
-    
-    >Sysno: {{sysno}}</p>
-
-    <p ng-class="{
-        'red': totalstudents >= 1000,
-        'green': totalstudents < 1000
-    }">
-        Total Students: {{totalstudents}}
-    </p>
-
-    <button ng-click="addstudent()">Add Student</button>
+    <p>Name:{{Name}}</p>
+    <input type="text" ng-model="email">
+    <p>Email:{{email}}</p>
+    <input type="text" ng-model="regno">
+    <p>Registration No:{{regno}}</p>
+    <input type="text" ng-model="dep">
+    <p>Department:{{dep}}</p>
+    <input type="text" ng-model="course">
+    <p>Course:{{course}}</p>
+    <!-- <input type="number" ng-model="totalStudents"> -->
+    <p ng-class="
+    {   'green': totalstudents>=1000, 
+        'red':totalstudents<1000}">
+        Total Students:{{totalstudents}}</p>
+    <button ng-click="totalstudents=totalstudents+1">Add Student</button> 
 
     <h2>Student List</h2>
-
-    <button ng-click="showstudents = !showstudents">
-        Show/Hide Students
+    <button ng-click="showstudents= !showstudents">
+        show/hide students
     </button>
 
+    <!-- <div ng-show="showDashboard"> -->
     <ul ng-show="showstudents">
         <li ng-repeat="student in students">
+
             {{student}}
+
         </li>
     </ul>
-    <hr><h2>filter demo</h2>
+
+    <hr>
+    <h2>filter demo</h2>
     <p>uppercase:{{collegename | uppercase}}</p>
     <p>lowercase:{{collegename | lowercase}}</p>
     <p>currency:{{fees | currency}}</p>
@@ -63,39 +51,221 @@
     <p>number:{{fees | number:2}}</p>
 
     <hr>
-    <h2>selected departments</h2>
+    <h2>Selected Departments</h2>
+ 
+    <label>Select Department</label>
 
-    <label>selected Departments</label>
-    <br>
-   <br>
-   <select ng-model="selectedDepartment"
-          ng-options="department for  department in departments"></select>
-          <p>select Departments:{{selectedDepartment}}</p>
+    <br><br>
+
+    <select ng-model="selectedDepartment"
+    
+            ng-options="department for department in departments"
+    
+    
+    ></select>
+
+    <p>Select Department:{{selectedDepartment}}</p>
 
 
-          <hr>
-          <h2>department info</h2>
-          <div ng-switch="selectedDepartment">
+    <hr>
+    <h2>Department info</h2>
+    <div ng-switch="selectedDepartment">
+
+        <div ng-switch-when="CSE">
+            <h3>CSE Department</h3>
+            <p>This is CSE department</p>
+    </div>
+
 
             <div ng-switch-when="MCA">
-               <h3>MCA</h3>
-               <p>mca is better than anything</p>
-          </div>
-           <div ng-switch-when="MBA">
-               <h3>MBA</h3>
-               <p>mba is better than anything</p>
-          </div>
-           <div ng-switch-when="CSE">
-               <h3>CSE</h3>
-               <p>cse is better than anything</p>
-          </div>
-           <div ng-switch-when="MTECH">
-               <h3>MTECH</h3>
-               <p>mtech is better than anything</p>
-          </div>
-          </div>
+            <h3>MCA Department</h3>
+            <p>This is MCA department</p>
+        </div>
+
+        <div ng-switch-when="MBA">
+            <h3>MBA Department</h3>
+            <p>This is MBA department</p>
+        </div>
 
 
+        <div ng-switch-when="EEE">
+            <h3>EEE Department</h3>
+            <p>This is EEE department</p>
+        </div>
+
+        <div ng-switch-when="ECE">
+            <h3>ECE Department</h3>
+            <p>This is ECE department</p>
+        </div>
+
+
+        <hr>
+        <h2>ng-init demo</h2>
+        <div ng-init="collegecode='fisat123' ; location='angamaly'">
+
+        <p>College code:{{collegecode}}</p>
+        <p>location:{{location}}</p>
+
+        </div>
+</div>
+        <h2>ng-disable demo</h2>
+        <button ng-click="allowAdmission()">Enable Admission</button>
+        <br><br>
+
+        <button ng-disabled="isDisabled">
+            Take Admission
+
+        </button>
+
+        <hr>
+        <h2>ng-readonly demo</h2>
+        <label>College ID</label>
+        
+        <br><br>
+
+        <input type="text" ng-model="" ng-readonly="isReadOnly">
+    
+        <br><br>
+        <button ng-click="isReadOnly=!isReadOnly">toggle readonly</button>
+        <p>readonly status: {{isReadOnly}}</p>
+
+
+        <hr>
+        <br><br>
+
+        <h2>Student Registration</h2>
+
+        <form name="studentForm" novalidate>
+
+            <label>Student Name</label>
+            <br>
+            <input type="text" name="studentName" ng-model="student.name" ng-minlength="3" ng-maxlength="20" required>
+            
+
+        <p ng-show = "studentForm.studentName.$touched && studentForm.studentName.$error.required"
+
+            style="color:red;">Student name is required</p>
+
+        <p ng-show = "studentForm.studentName.$touched && studentForm.studentName.$error.minlength"
+
+            style="color:red;">minimum 3 characters required</p>
+
+        <p ng-show = "studentForm.studentName.$touched && studentForm.studentName.$error.maxlength"
+
+            style="color:red;">maximum 20 characters allowed</p>
+
+        
+        
+
+            <br><br>
+
+
+            <label>Email</label>
+            <br>
+            <input type="email" name="studentEmail" ng-model="student.email" required>
+            
+        <p ng-show = "studentForm.studentEmail.$touched && studentForm.studentEmail.$error.required"
+
+            style="color:red;">Student email is required</p>
+            <br><br>
+
+
+            <label>Phone no</label>
+            <br>
+            <input type="tel" name="studentphone" ng-model="student.phone" required>
+            <p ng-show = "studentForm.studentphone.$touched && studentForm.studentphone.$error.required"
+
+            style="color:red;">Student phone no is required</p>
+            <br><br>
+
+            <label>Gender</label>
+            <br>
+            <input type="text" name="studentGender" ng-model="student.gender" required>
+            <p ng-show = "studentForm.studentGender.$touched && studentForm.studentGender.$error.required"
+
+            style="color:red;">Student gender is required</p>
+            <br><br>
+
+            <label>Address</label>
+            <br>
+            <input type="text" name="studAddr" ng-model="student.address" required>
+            <p ng-show = "studentForm.studAddr.$touched && studentForm.studAddr.$error.required"
+
+            style="color:red;">Student address is required</p>
+            <br><br>
+
+            <label>Age</label>
+            <br>
+            <input type="number" name="studAge" ng-model="student.age" required>
+            <p ng-show = "studentForm.studAge.$touched && studentForm.studAge.$error.required"
+
+            style="color:red;">Student age is required</p>
+            <br><br>
+
+            <button>Register Student</button>
+
+        </form>
+
+        <hr>
+        <br><br>
+        <h2>Form Status</h2>
+
+        <p>
+
+            valid:{{studentForm.$valid}}
+
+        </p>
+
+
+        <p>
+
+            invalid:{{studentForm.$invalid}}
+
+        </p>
+
+
+        <p>
+
+            pristine:{{studentForm.$pristine}}
+
+        </p>
+
+        <p>
+
+            dirty:{{studentForm.$dirty}}
+
+        </p>
+        <p>
+student name touched : {{studentForm.studentName.$touched}}
+
+</p>
+
+
+<p>
+
+    student name valid : {{studentForm.studentName.$valid}}
+</p>
+
+
+<p>
+student name invalid : {{studentForm.studentName.$invalid}}
+
+</p>
+
+<p>student name error required : {{studentForm.studentName.$error.required}}
+
+
+</p>
+
+<p>
+student minlength invalid : {{studentForm.studentName.$error.minlength}}
+
+</p>
+
+<p>
+student maxlength invalid : {{studentForm.studentName.$error.maxlength}}
+
+</p>
 
 
 
